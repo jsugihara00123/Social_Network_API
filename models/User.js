@@ -3,7 +3,7 @@ const moment = require('moment')
 
 // Schema for Users
 
-const UserSchema = new Schema({
+const userSchema = new Schema({
 
   username: {
 
@@ -53,16 +53,17 @@ const UserSchema = new Schema({
 );
 
 
-const User = model('User', UserSchema);
 
+userSchema.virtual("friendCount").get(function () {
 
-UserSchema.virtual('friendCount').get(function() {
-
-  //Returning length
-
+  //return length
   return this.friends.length;
-
+  
 });
+
+
+
+const User = model("User", userSchema);
 
 // Exporting as User
 

@@ -1,10 +1,11 @@
 const { Schema, model, Types } = require('mongoose')
-const moment = require('moment')
+
+const dateFormat = require("../utils/dateFormat")
 
 
 // Schema for reactions
 
-const ReactionSchema = new Schema(
+const reactionSchema = new Schema(
     {
       reactionId: {
         type: Schema.Types.ObjectId,
@@ -14,8 +15,6 @@ const ReactionSchema = new Schema(
       reactionBody: {
         type: String,
         required: true,
-        trim: true,
-        minlength: 1,
         maxlength: 280
       },
 
@@ -27,7 +26,7 @@ const ReactionSchema = new Schema(
       createdAt: {
         type: Date,
         default: Date.now,
-        get: createdAtVal => moment(createdAtVal).format('MMM DD, YYYY [at] hh:mm a')
+        get: (createdAtVal) => dateFormat(createdAtVal),
       }
 
     },
@@ -41,7 +40,7 @@ const ReactionSchema = new Schema(
 
   // Schema for thoughts
 
-const ThoughtSchema = new Schema (
+const thoughtSchema = new Schema (
     {
         thoughtText: {
             type: String,
@@ -53,8 +52,8 @@ const ThoughtSchema = new Schema (
         createdAt: {
             type: Date,
             default: Date.now,
-            get: (createdAtVal) => moment(createdAtVal).format('MMM DD, YYYY [at] hh:mm a')
-        },
+            get: (createdAtVal) => dateFormat(createdAtVal),
+          },
 
         username: {
             type: String,
@@ -62,7 +61,7 @@ const ThoughtSchema = new Schema (
             ref: 'User'
         },
 
-        reactions: [ReactionSchema],
+        reactions: [reactionSchema],
     },
 
     {
@@ -79,15 +78,12 @@ const ThoughtSchema = new Schema (
 
 
 
-const Thought = model('Thought', ThoughtSchema)
+thoughtSchema.virtual("reactionCount").get(function () {
+  //return length
+  return this.reactions.length;
+});
 
-  ThoughtSchema.virtual('reactionCount').get(function() {
-
-    // returing length
-
-    return this.reactions.length;
-
-  });
+const Thought = model("Thought", thoughtSchema);
 
 
 // Export as "Thought"
