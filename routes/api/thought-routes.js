@@ -1,9 +1,6 @@
-const router = require("express").Router()
-
-//consolidating all Thought APIs in one object array
+const router = require("express").Router();
 
 const {
-
   getAllThoughts,
   getThoughtById,
   createThought,
@@ -11,19 +8,18 @@ const {
   deleteThought,
   addReaction,
   deleteReaction,
+} = require("../../controllers/thought-controller");
 
-} = require("../../controllers/thought-controller")
+// Set up GET all and POST at /api/thoughts
+router.route("/").get(getAllThoughts).post(createThought);
 
-//GET adn POST
+// Set up GET one, PUT, and DELETE at /api/thoughts/:id
+router
+  .route("/:id")
+  .get(getThoughtById)
+  .put(updateThought)
+  .delete(deleteThought);
 
-router.route("/").get(getAllThoughts).post(createThought)
-
-//GET, PUT, and DELETE with /:id in url
-
-router.route("/:id").get(getThoughtById).put(updateThought).delete(deleteThought);
-
-//add or delete reaction
-
-router.route("/:thoughtId/reactions").post(addReaction).delete(deleteReaction)
+router.route("/:thoughtId/reactions").post(addReaction).delete(deleteReaction);
 
 module.exports = router;

@@ -1,5 +1,5 @@
 {
-  "name": "social_network_api",
+  "name": "social-network-api",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/JoshCarter8400/social-network-api.git"
+    "url": "git+https://github.com/jsugihara00123/Social_Network_API.git"
   },
-  "author": "",
+  "author": "Jonathan Sugihara",
   "license": "",
   "bugs": {
-    "url": "https://github.com/JoshCarter8400/social-network-api.git"
+    "url": "https://github.com/jsugihara00123/Social_Network_API.git"
   },
-  "homepage": "https://github.com/JoshCarter8400/social-network-api.git#readme",
+  "homepage": "https://github.com/jsugihara00123/Social_Network_API.git#readme",
   "dependencies": {
     "express": "^4.17.1",
     "mongoose": "^5.11.4"
