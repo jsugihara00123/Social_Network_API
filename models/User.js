@@ -1,5 +1,5 @@
-const { Schema, model } = require('mongoose');
-const moment = require('moment');
+const { Schema, model } = require('mongoose')
+const moment = require('moment')
 
 // Schema for Users
 
@@ -61,7 +61,7 @@ UserSchema.virtual('friendCount').get(function() {
   //Returning length
 
   return this.friends.length;
-  
+
 });
 
 // Exporting as User
