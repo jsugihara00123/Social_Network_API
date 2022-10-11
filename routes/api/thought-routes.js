@@ -1,45 +1,29 @@
-const router = require('express').Router()
+const router = require("express").Router()
 
+//consolidating all Thought APIs in one object array
 
-//object containing all api calls
 const {
 
-    getAllThoughts,
-    createThought,
-    getThoughtById,
-    updateThought,
-    deleteThought,
-    removeReaction,
-    addReaction
+  getAllThoughts,
+  getThoughtById,
+  createThought,
+  updateThought,
+  deleteThought,
+  addReaction,
+  deleteReaction,
 
-} = require('../../controllers/thought-controller')
+} = require("../../controllers/thought-controller")
 
-router
+//GET adn POST
 
-    .route('/')
-    .get(getAllThoughts)
-    .post(createThought)
+router.route("/").get(getAllThoughts).post(createThought)
 
+//GET, PUT, and DELETE with /:id in url
 
-router
+router.route("/:id").get(getThoughtById).put(updateThought).delete(deleteThought);
 
-    .route('/:thoughtId/:reactionId')
-    .delete(removeReaction)
+//add or delete reaction
 
-router
-
-    .route('/:thoughtId/reactions')
-    .post(addReaction)
-
-router
-
-    .route('/:id')
-    .get(getThoughtById)
-    .put(updateThought)
-    .delete(deleteThought)
-
-
-
-//exporing router
+router.route("/:thoughtId/reactions").post(addReaction).delete(deleteReaction)
 
 module.exports = router;
