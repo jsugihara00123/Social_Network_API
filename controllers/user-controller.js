@@ -1,8 +1,13 @@
+// <-------------- USER ---------------->
+
 const { User } = require("../models");
+
 const { populate } = require("../models/User");
 
+
+//object array of user APIs for userController
 const userController = {
-  //get all users
+
   getAllUsers(req, res) {
     User.find({})
       .populate({
@@ -13,12 +18,17 @@ const userController = {
       .sort({ _id: -1 })
       .then((dbUserData) => res.json(dbUserData))
       .catch((err) => {
-        console.log(err);
+
+        //console.log(err);
         res.status(400).json(err);
       });
   },
-  // get one pizza by id
+
+
   getUserById({ params }, res) {
+
+        //consoloe.log()
+    
     User.findOne({ _id: params.id })
       .populate({
         path: "thoughts",
@@ -26,7 +36,8 @@ const userController = {
       })
       .select("-__v")
       .then((dbUserData) => {
-        // If no user is found
+
+        //err
         if (!dbUserData) {
           res.status(404).json({ message: "No user found with this ID" });
           return;
@@ -38,14 +49,21 @@ const userController = {
         res.status(400).json(err);
       });
   },
-  // create user
+
+  
   createUser({ body }, res) {
+
+        //consoloe.log()
+    
     User.create(body)
       .then((dbUserData) => res.json(dbUserData))
       .catch((err) => res.status(400).json(err));
   },
-  // update user by id
+
   updateUser({ params, body }, res) {
+       
+    //consoloe.log()
+    
     User.findOneAndUpdate({ _id: params.id }, body, { new: true })
       .then((dbUserData) => {
         if (!dbUserData) {
@@ -56,8 +74,13 @@ const userController = {
       })
       .catch((err) => res.status(400).json(err));
   },
-  // delete user
+
+  
+
   deleteUser({ params }, res) {
+
+    //consoloe.log()
+    
     User.findOneAndDelete({ _id: params.id })
       .then((dbUserData) => {
         if (!dbUserData) {
@@ -69,8 +92,10 @@ const userController = {
       .catch((err) => res.status(400).json(err));
   },
 
-  // add friend
   addFriend({ params }, res) {
+
+    //consoloe.log()
+    
     User.findOneAndUpdate(
       { _id: params.id },
       { $addToSet: { friends: params.friendsId } },
@@ -81,6 +106,9 @@ const userController = {
   },
 
   removeFriend({ params }, res) {
+
+    //consoloe.log()
+    
     User.findOneAndUpdate(
       { _id: params.id },
       { $pull: { friends: params.friendsId } },
@@ -94,7 +122,10 @@ const userController = {
         res.json(dbUserData);
       })
       .catch((err) => res.status(400).json(err));
+      //err
   },
 };
 
+
+//export userController
 module.exports = userController;
