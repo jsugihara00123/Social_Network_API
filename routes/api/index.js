@@ -8,5 +8,5 @@ router.use("/users", userRoutes);
 router.use("/thoughts", thoughtRoutes);
 
 
-//export
+//export router
 module.exports = router;
