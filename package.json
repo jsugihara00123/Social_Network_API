@@ -1,7 +1,7 @@
 {
-  "name": "social-network-api",
+  "name": "social_network_api",
   "version": "1.0.0",
-  "private": true,
+  "private": false,
   "description": "Social Network API",
   "main": "server.js",
   "scripts": {
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bdamota/Social-Network-API.git"
+    "url": "git+https://github.com/jsugihara00123/Social_Network_API.git"
   },
-  "author": "Briana daMota",
-  "license": "MIT ",
+  "author": "Jonathan Sugihara",
+  "license": "",
   "bugs": {
-    "url": "https://github.com/bdamota/Social-Network-API/issues"
+    "url": "https://github.com/jsugihara00123/Social_Network_API.git"
   },
-  "homepage": "https://github.com/bdamota/Social-Network-API#readme",
+  "homepage": "https://github.com/jsugihara00123/Social_Network_API.git",
   "dependencies": {
     "express": "^4.17.1",
     "moment": "^2.28.0",

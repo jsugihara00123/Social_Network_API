@@ -6,32 +6,38 @@ const moment = require('moment');
 const UserSchema = new Schema({
 
   username: {
+
     type: String,
     required: true,
     unique: true,
     trim: true
+
   },
 
   email: {
+
     type: String,
     required: true,
     unique: true,
     trim: true,
     match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Enter a valid email address please!']
+
   },
 
   thoughts: [
-      {
-          type: Schema.Types.ObjectId,
-          ref: 'Thought'
-      }
+
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Thought'
+    }
   ],
 
   friends: [
-      {
-          type: Schema.Types.ObjectId,
-          ref: 'User'
-      }
+
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'User'
+    }
   ]
   },
 
@@ -53,8 +59,9 @@ const User = model('User', UserSchema);
 UserSchema.virtual('friendCount').get(function() {
 
   //Returning length
-  
+
   return this.friends.length;
+  
 });
 
 // Exporting as User
