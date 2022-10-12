@@ -2,8 +2,6 @@
 
 const { User } = require("../models");
 
-const { populate } = require("../models/User");
-
 
 //object array of user APIs for userController
 const userController = {

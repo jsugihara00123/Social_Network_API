@@ -1,6 +1,9 @@
 // <-------------- THOUGHT ---------------->
 
-const { Thought, User } = require("../models");
+const { Thought } = require("../models/Thought");
+
+const { User } = require("../models/User");
+
 
 //Object array of all API calls for thought controller
 
@@ -63,10 +66,13 @@ const thoughtController = {
         );
       })
       .then((dbUserData) => {
+        console.log(dbUserData)
+
         if (!dbUserData) {
           res.status(404).json({ message: "No User with this ID" });
           return;
         }
+
         res.json(dbUserData);
       })
       .catch((err) => res.json(err));
