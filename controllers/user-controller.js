@@ -1,6 +1,9 @@
 // <-------------- USER ---------------->
 
-const { User } = require("../models");
+const { Thought } = require("../models/Thought");
+
+const { User } = require("../models/User");
+
 
 
 //object array of user APIs for userController
